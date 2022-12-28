@@ -1,7 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ContactEntity } from 'src/app/entities/ContactEntity';
 import { ContactService } from '../../services/Contact.service';
+import { UpdateContactModalComponent } from './update-contact-modal/update-contact-modal.component';
 
 
 
@@ -15,7 +18,9 @@ export class ContactComponent implements OnInit {
   contactList: ContactEntity[] = [];
 
   constructor(
-    private contactService : ContactService
+    private contactService : ContactService,
+    private dialog: MatDialog,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -32,7 +37,26 @@ export class ContactComponent implements OnInit {
       }
     );
   }
-  public updateContact(Contact :ContactEntity){
+  public updateContact(contact :ContactEntity){
+
+    const dialogRef = this.dialog.open(UpdateContactModalComponent, {
+      data:contact,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        if(result!=null){
+          let contactRes :ContactEntity = new ContactEntity(result.firstName, result.lastName,result.email);
+            this.contactService.updateContat(contactRes).subscribe({
+              next :()=>{
+                this.router.navigate(['/contacts']);
+                 // this.toastService.success('Le contact est bien ajouté dans le répertoire',"Success")
+              },
+              //error :()=>  //this.toastService.error('Erreur lors de lajout',"Error")
+            });
+         
+        }
+
+    });
 
   }
 
