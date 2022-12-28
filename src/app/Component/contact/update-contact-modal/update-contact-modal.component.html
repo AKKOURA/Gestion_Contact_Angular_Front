@@ -1,17 +1,17 @@
 
 
     <mat-dialog-content [formGroup]="contactForm">
-      <h2 mat-dialog-title>Ajouter un nouveau contact</h2>
+      <h2 mat-dialog-title> Modifier le contact </h2>
       <mat-form-field>
-          <input matInput placeholder="firstName" formControlName="firstName">
+          <input matInput placeholder="firstName" formControlName="firstName" [(ngModel)]="contact.firstName">
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput placeholder="lastName" formControlName="lastName">
+        <input matInput placeholder="lastName" formControlName="lastName" [(ngModel)]="contact.lastName">
      </mat-form-field>
      <br>
       <mat-form-field>
-        <input matInput placeholder="email" formControlName="email">
+        <input matInput placeholder="email" formControlName="email" [(ngModel)]="contact.email">
      </mat-form-field>
      <br>
       <mat-form-field>

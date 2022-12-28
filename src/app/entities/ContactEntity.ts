@@ -9,9 +9,14 @@ export class ContactEntity{
     lastName!: string;
     email! : string;
     Address! : AddressEntity;
-
     contactGroups! : ContactGroupEntity[];
-    phones! : PhoneNumberEntity[];
+    phones! : PhoneNumberEntity[];  
+    constructor(firstName : string,
+        lastName: string,
+        email : string){
+            this.firstName =firstName;
+            this.lastName =lastName;
+            this.email=email;
 
-    
+    }
 }

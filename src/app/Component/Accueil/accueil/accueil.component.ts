@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateContact_modalComponent } from '../../contact/create-contact-modal/create-contact_modal/create-contact_modal.component';
+import { ContactService } from '../../../services/Contact.service';
+import {MatDialog} from  '@angular/material/dialog' ;
+import { Router } from '@angular/router';
+import { ContactEntity } from '../../../entities/ContactEntity';
+import { AddressEntity } from 'src/app/entities/AddressEntity';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-accueil',
@@ -7,9 +14,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilComponent implements OnInit {
 
-  constructor() { }
+  public newContact :ContactEntity={
+    idContact :0,
+    firstName : "",
+    lastName: "",
+    email: "",
+    Address : new AddressEntity(),
+    contactGroups: [],
+    phones : [],
+};
+  constructor(
+    private contactService : ContactService,
+    private dialog: MatDialog,
+    private router: Router,
+    //private toastService: ToastrService
+  ) {  }
 
   ngOnInit() {
+  }
+  addContact() {
+    const dialogRef = this.dialog.open(CreateContact_modalComponent, {
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        if(result!=null){
+          console.log(result)
+            this.newContact = result;
+            this.newContact.Address = new AddressEntity();
+            this.newContact.Address.address = result.addressLabel;
+            this.contactService.createContact(this.newContact).subscribe({
+              next :()=>{
+                this.router.navigate(['/contacts']);
+                 // this.toastService.success('Le contact est bien ajouté dans le répertoire',"Success")
+              },
+              //error :()=>  //this.toastService.error('Erreur lors de lajout',"Error")
+            });
+         
+        }
+
+    });
   }
 
 }

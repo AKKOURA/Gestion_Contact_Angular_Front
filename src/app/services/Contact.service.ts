@@ -12,17 +12,17 @@ export class ContactService {
 constructor(private http: HttpClient) { }
 
 getAllContacts() : Observable<ContactEntity[]>{
-  return this.http.get<ContactEntity[]>("/api/CarnetContactProjet/contacts");
+  return this.http.get<ContactEntity[]>("http://localhost:8080/CarnetContactProjet/contacts");
 }
 
 deleteContact(id:number):Observable<number>{
-  return this.http.get<number>(`/api/CarnetContactProjet/delete/${id}`);
+  return this.http.get<number>(`http://localhost:8080/CarnetContactProjet/delete/${id}`);
 }
 createContact(newContact:ContactEntity):Observable<boolean>{
-  return this.http.post<boolean>("/api/CarnetContactProjet/create",newContact);
+  return this.http.post<boolean>("http://localhost:8080/CarnetContactProjet/create",newContact);
 }
-updateContat(contactToUpdate:number):Observable<boolean>{
-  return this.http.post<boolean>("/api/CarnetContactProjet/update",contactToUpdate);
+updateContat(contactToUpdate:ContactEntity):Observable<boolean>{
+  return this.http.post<boolean>("http://localhost:8080/CarnetContactProjet/edit",contactToUpdate);
 }
 
 }
