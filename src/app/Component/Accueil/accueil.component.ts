@@ -58,5 +58,7 @@ export class AccueilComponent implements OnInit {
 
     });
   }
+  rechercher(){}
+  disconnect(){}
 
 }

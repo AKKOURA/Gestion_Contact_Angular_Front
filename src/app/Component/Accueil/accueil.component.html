@@ -1,10 +1,10 @@
-
-<!-- Toolbar -->
+<!-- 
+ Toolbar 
 <app-footer [title]="'Bienvenu'"></app-footer>
 
 <div class="content" role="main">
 
-  <!-- Highlight Card -->
+   Highlight Card 
   <div class="card highlight-card card-small">
 
     <svg id="rocket" xmlns="http://www.w3.org/2000/svg" width="101.678" height="101.678" viewBox="0 0 101.678 101.678">
@@ -27,7 +27,7 @@
 
   </div>
 
-  <!-- Resources -->
+ Resources 
   <h2>Services</h2>
   <p>Voici quelques services pour vous aider à gérer vos contacts :</p>
 
@@ -45,7 +45,7 @@
 
   </div>
 
-  <!-- Footer -->
+  
   <br>
   <br>
   <br>
@@ -71,4 +71,213 @@
     <path id="Path_39" data-name="Path 39" d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z" transform="translate(142.69 -634.312)" fill="#eee"/>
   </svg>
 
-</div>
+</div> -->
+<!DOCTYPE html>
+<html>
+
+<nav class = "navbar">
+  <div class="top-navbar" style="width: 100%">
+    <div class="nav">
+      <a href=""><img class= "brand-logo"  src= "./assets/Contact2.png" alt></a>
+    </div>
+    <div class = "nav-items" style="width: 55%; margin-top: 10px">
+      <div class="searchbar" style="width: 560px;">
+        <input
+          placeholder="Rechercher"
+          matInput
+          class = "search-box"
+        >  
+        <button class="search-btn" (click)="rechercher()"> Rechercher </button>
+      </div>
+      <div  class ="nav-icon">
+        <ul id="menu-demo2">
+          <li><a><img src="./assets/user.png" alt=""></a>
+            <ul>
+              <li><a  style="font-size: 15px; font-family : Times New Roman, Times, serif; color: black; font-weight: bold;" href="/profil">Compte</a></li>
+              <li><a style="font-size: 14px; font-family : Times New Roman, Times, serif; color: black; font-weight: bold;" (click)="disconnect()">Deconnect</a></li>
+            </ul>
+          </li>
+          <li>
+          </li>
+      
+        </ul>
+      </div>
+      <a href="/login"><img  style= "width:50px; margin-right: 10%;"src="./assets/userIcon-removebg-preview.png" alt="" ></a>
+    </div>
+  </div>
+  <ul class="links-container">
+    <li class= "link-item"><a class= "link" href= ""> ACCUEIL</a></li>
+    <li class= "link-item" ><a class= "link" href= "/produits"> AJOUT CONTACT</a></li>
+    <li class= "link-item"><a class= "link" href= "cours"> LISTE CONTACT</a></li>
+    <li class= "link-item"><a class= "link" href= "/forum"> AJOUT GROUPE</a></li>
+    <li class= "link-item"><a class= "link" href= "/forum"> AJOUT TELEPHONE</a></li>
+  </ul>
+</nav>
+
+
+   <!-- body -->
+   <body class="main-layout">
+   <style>
+      *{box-sizing: border-box}
+
+      body{
+        margin:0
+      }
+
+      .am img{
+      height:50vh;
+      float:center;
+      justify-content: center;
+        }
+
+
+      </style>
+     <div class="container">
+      <figure class="am">
+        <img src= "./assets/contactj.jpg" alt>
+      </figure>
+    </div>
+      <!-- end banner -->
+      <!-- about -->
+      <div id="about"  class="about">
+         <div class="container">
+            <div class="row d_flex">
+               <div class="col-md-7">
+                  <div class="titlepage">
+                     <h2>Gestion de contact </h2>
+                     <span></span>
+                     <p>Profitez d'un service innovant ! Retrouvez ici la liste de tous les contacts </p>
+                     <a class="read_more" href="/contacts"> Voir les contacts <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                  </div>
+               </div>
+               <div class="col-md-5">
+                  <div class="about_img">
+                     <figure><img src="./assets/groupeMonde.jpg" alt="#"/></figure>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end about -->
+      <!-- mobile -->
+      <div id="mobile"  class="mobile">
+         <div class="container">
+            <div class="row d_flex">
+               <div class="col-md-5">
+                  <div class="mobile_img">
+                     <figure><img src="./assets/addcontact.jpg" alt="#"/></figure>
+                  </div>
+               </div>
+               <div class="col-md-7">
+                  <div class="titlepage">
+                     <h2>Envie de créer un nouveau contact ?</h2>
+                     <span></span>
+                     <p>Profitez d'un service dédié à l'ajout des nouveaux contact. Vous pourrez remplir les champs selon les caracteristiques du contact  </p>
+                     <a class="read_more" (click) = "addContact()">Je commence <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end mobile -->
+            <!-- clients -->
+      <div class="clients">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-6 offset-md-3">
+                 <div class="titlepage">
+                    <h2>Vous avez une question ? </h2>
+                    <span></span>
+                 </div>
+              </div>
+           </div>
+           <div class="row">
+              <div class="col-md-12">
+                 <div class="clients_box">
+                    <p>Vous avez la possibilité de communiquer avec d'autres utilisateur. Alors n'hésitez pas à poser vos questions et répondre à d'autres étudiants qui seront ravis de vous lire.</p>
+                    <style> .clients_box::after{background:url(./assets/cli_cross.png)}</style>
+                  </div>
+                 <div class="jonu">
+                    <img style="width: 30%; height: 30%; border-radius: 2%;" src="./assets/questuionrep.jpg" alt="#"/>
+                    <br><br><br>
+                    <a class="read_more" href= "/forum">J'accède au forum</a>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <!-- end clients -->
+      <!--  contact -->
+      <div id="contact" class="contact">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h2>Besoin d'aide ? Contactez nous</h2>
+                  </div>
+               </div>
+               <div class="col-md-6 offset-md-3">
+                  <form id="request" class="main_form">
+                     <div class="row">
+                        <div class="col-md-12 ">
+                           <input class="contactus" placeholder="Nom et prenom" type="type" name="Nom complet">
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Numéro de télephone" type="type" name="Numéro de télephone">
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Email" type="type" name="Email">
+                        </div>
+                        <div class="col-md-12">
+                           <textarea class="contactus" placeholder="Votre message" type="type" Message="Name">Message </textarea>
+                        </div>
+                        <div class="col-sm-12">
+                           <button class="send_btn">Envoyer</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end contact -->
+      <!--  footer -->
+   <!--<footer>-->
+   <!-- <div class="footer">
+       <div class="container">
+          <div class="row border-top">
+
+
+          </div>
+       </div>
+      <div class="copyright">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                <a
+                class="btn btn-link btn-floating btn-lg text-dark m-1"
+                href="https://github.com/AideEtudiants"
+                role="button"
+                data-mdb-ripple-color="dark"
+              ><i class="fab fa-github"></i></a>
+                  <p>© 2022 All Rights Reserved. <a class="text-dark" href="/#">Studenity</a></p>
+
+               </div>
+               </div>
+              </div>
+             </div>
+             </div>-->
+   <!--</footer>-->
+      <!-- end footer -->
+      <!-- Javascript files-->
+    <script src=".\js\jquery.min.js"></script>
+      <script src=".\js\popper.min.js"></script>
+      <script src=".\js\bootstrap.bundle.min.js"></script>
+      <script src=".\js\jquery-3.0.0.min.js"></script>
+
+       <!--sidebar -->
+      <script src=".\js\jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src=".\js\custom.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+   </body>
+</html>

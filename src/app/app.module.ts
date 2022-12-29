@@ -60,7 +60,7 @@ const routes: Routes = [
     ContactComponent,
     AccueilComponent,
     CreateContact_modalComponent,
-    UpdateContactModalComponent
+    UpdateContactModalComponent,
   ],
   imports: [
     BrowserModule,
