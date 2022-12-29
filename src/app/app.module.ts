@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AccueilComponent } from './Component/Accueil/accueil/accueil.component';
+import { AccueilComponent } from './Component/Accueil/accueil.component';
 import { ContactComponent } from './Component/contact/Contact.component';
 import { FooterComponent } from './Component/footer/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

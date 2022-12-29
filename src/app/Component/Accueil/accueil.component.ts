@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateContact_modalComponent } from '../../contact/create-contact-modal/create-contact_modal/create-contact_modal.component';
-import { ContactService } from '../../../services/Contact.service';
+import { CreateContact_modalComponent } from '../contact/create-contact-modal/create-contact_modal/create-contact_modal.component';
+import { ContactService } from 'src/app/services/Contact.service';
 import {MatDialog} from  '@angular/material/dialog' ;
 import { Router } from '@angular/router';
-import { ContactEntity } from '../../../entities/ContactEntity';
+import { ContactEntity } from 'src/app/entities/ContactEntity';
 import { AddressEntity } from 'src/app/entities/AddressEntity';
 import { ToastrService } from 'ngx-toastr';
 import { PhoneNumberEntity } from 'src/app/entities/PhoneNumberEntity';
@@ -42,11 +42,11 @@ export class AccueilComponent implements OnInit {
         if(result!=null){
           console.log(result)
             this.newContact = result;
-            //this.newContact.Address = new AddressEntity();
+            this.newContact.Address = new AddressEntity();
             this.newContact.Address.address = result.addressLabel;
-            //this.newContact.phones = new PhoneNumberEntity();
+            this.newContact.phones = new PhoneNumberEntity();
             this.newContact.phones.phoneNumber = result.phonelabel;
-            this.contactService.createContact(result).subscribe({
+            this.contactService.createContact(this.newContact).subscribe({
               next :()=>{
                 this.router.navigate(['/contacts']);
                  // this.toastService.success('Le contact est bien ajouté dans le répertoire',"Success")
