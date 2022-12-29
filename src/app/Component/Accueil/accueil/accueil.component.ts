@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ContactEntity } from '../../../entities/ContactEntity';
 import { AddressEntity } from 'src/app/entities/AddressEntity';
 import { ToastrService } from 'ngx-toastr';
+import { PhoneNumberEntity } from 'src/app/entities/PhoneNumberEntity';
 
 @Component({
   selector: 'app-accueil',
@@ -21,7 +22,7 @@ export class AccueilComponent implements OnInit {
     email: "",
     Address : new AddressEntity(),
     contactGroups: [],
-    phones : 0,
+    phones : new PhoneNumberEntity(),
 };
   constructor(
     private contactService : ContactService,
@@ -41,9 +42,11 @@ export class AccueilComponent implements OnInit {
         if(result!=null){
           console.log(result)
             this.newContact = result;
-            this.newContact.Address = new AddressEntity();
+            //this.newContact.Address = new AddressEntity();
             this.newContact.Address.address = result.addressLabel;
-            this.contactService.createContact(this.newContact).subscribe({
+            //this.newContact.phones = new PhoneNumberEntity();
+            this.newContact.phones.phoneNumber = result.phonelabel;
+            this.contactService.createContact(result).subscribe({
               next :()=>{
                 this.router.navigate(['/contacts']);
                  // this.toastService.success('Le contact est bien ajouté dans le répertoire',"Success")

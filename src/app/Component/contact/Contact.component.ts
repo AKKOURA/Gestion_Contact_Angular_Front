@@ -46,8 +46,8 @@ export class ContactComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
         if(result!=null){
-          let phoneRes:PhoneNumberEntity=new PhoneNumberEntity(result.phoneNumber)
-          let contactRes :ContactEntity = new ContactEntity(result.firstName, result.lastName,result.email,result.phones);
+          let phoneRes:PhoneNumberEntity=new PhoneNumberEntity()
+          let contactRes :ContactEntity = new ContactEntity(result.firstName, result.lastName,result.email);
             this.contactService.updateContat(contactRes).subscribe({
               next :()=>{
                 this.router.navigate(['/contacts']);

@@ -31,7 +31,7 @@ export class CreateContact_modalComponent implements OnInit {
       email: new FormControl(null, Validators.required),
       addressLabel: new FormControl(null,Validators.required),
      // contactGroups:new FormControl(null,Validators.required),
-     // phones:new FormControl(null,Validators.required)
+     phonelabel:new FormControl(null,Validators.required)
     });
     
   }
