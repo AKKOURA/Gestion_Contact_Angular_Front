@@ -10,13 +10,14 @@ export class ContactEntity{
     email! : string;
     Address! : AddressEntity;
     contactGroups! : ContactGroupEntity[];
-    phones! : PhoneNumberEntity[];  
+    phones: number;  
     constructor(firstName : string,
         lastName: string,
-        email : string){
+        email : string,phones:PhoneNumberEntity){
             this.firstName =firstName;
             this.lastName =lastName;
             this.email=email;
+            this.phones=phones.idPhoneNumber;
 
     }
 }

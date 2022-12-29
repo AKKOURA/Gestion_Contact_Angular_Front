@@ -21,7 +21,7 @@ export class AccueilComponent implements OnInit {
     email: "",
     Address : new AddressEntity(),
     contactGroups: [],
-    phones : [],
+    phones : 0,
 };
   constructor(
     private contactService : ContactService,

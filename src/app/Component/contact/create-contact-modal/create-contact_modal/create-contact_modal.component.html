@@ -3,20 +3,24 @@
     <mat-dialog-content [formGroup]="contactForm">
       <h2 mat-dialog-title>Ajouter un nouveau contact</h2>
       <mat-form-field>
-          <input matInput placeholder="firstName" formControlName="firstName">
+          <input matInput placeholder="firstName" formControlName="FirstName">
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput placeholder="lastName" formControlName="lastName">
+        <input matInput placeholder="lastName" formControlName="LastName">
      </mat-form-field>
      <br>
       <mat-form-field>
-        <input matInput placeholder="email" formControlName="email">
+        <input matInput placeholder="email" formControlName="Email">
      </mat-form-field>
      <br>
       <mat-form-field>
-        <input matInput placeholder="address" formControlName="address">
+        <input matInput placeholder="address" formControlName="Address">
     </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="phone number" formControlName="Phone number">
+  </mat-form-field>
     <br>
   </mat-dialog-content>
   

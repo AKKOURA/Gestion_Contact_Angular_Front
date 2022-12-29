@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ContactEntity } from 'src/app/entities/ContactEntity';
+import { PhoneNumberEntity } from 'src/app/entities/PhoneNumberEntity';
 import { ContactService } from '../../services/Contact.service';
 import { UpdateContactModalComponent } from './update-contact-modal/update-contact-modal.component';
 
@@ -45,7 +46,8 @@ export class ContactComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
         if(result!=null){
-          let contactRes :ContactEntity = new ContactEntity(result.firstName, result.lastName,result.email);
+          let phoneRes:PhoneNumberEntity=new PhoneNumberEntity(result.phoneNumber)
+          let contactRes :ContactEntity = new ContactEntity(result.firstName, result.lastName,result.email,result.phones);
             this.contactService.updateContat(contactRes).subscribe({
               next :()=>{
                 this.router.navigate(['/contacts']);
