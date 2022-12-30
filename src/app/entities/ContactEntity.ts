@@ -8,15 +8,23 @@ export class ContactEntity{
     firstName! : string;
     lastName!: string;
     email! : string;
-    Address! : AddressEntity;
-    contactGroups! : ContactGroupEntity[];
-    phones!: PhoneNumberEntity;  
-    constructor(firstName : string,
-        lastName: string,
-        email : string){
-            this.firstName =firstName;
-            this.lastName =lastName;
-            this.email=email;
+    address! : AddressEntity;
+    contactGroups! : ContactGroupEntity[]|null;
+    phones!: PhoneNumberEntity[]|null;  
 
+    constructor(
+        firstName : string,
+        lastName: string,
+        email : string,
+        address : AddressEntity,
+        contactGroups: ContactGroupEntity[] |null = null,
+        phones: PhoneNumberEntity[]|null = null 
+    ){
+        this.firstName =firstName;
+        this.lastName =lastName;
+        this.email=email;
+        this.address = address,
+        this.contactGroups=contactGroups,
+        this.phones = phones
     }
 }

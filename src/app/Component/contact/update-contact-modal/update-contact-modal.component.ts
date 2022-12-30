@@ -28,7 +28,7 @@ export class UpdateContactModalComponent implements OnInit {
       firstName : new FormControl(this.contact?.firstName, Validators.required),
       lastName: new FormControl(this.contact?.lastName, Validators.required),
       email: new FormControl(this.contact?.email, Validators.required),
-      address: new FormControl(this.contact?.Address?.address),
+      address: new FormControl(this.contact?.address?.address),
       // contactGroups:new FormControl(null),
       // phones:new FormControl(null)
     });

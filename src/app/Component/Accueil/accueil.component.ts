@@ -20,9 +20,9 @@ export class AccueilComponent implements OnInit {
     firstName : "",
     lastName: "",
     email: "",
-    Address : new AddressEntity(),
+    address : new AddressEntity(),
     contactGroups: [],
-    phones : new PhoneNumberEntity(),
+    phones : [new PhoneNumberEntity("")] ,
 };
   constructor(
     private contactService : ContactService,
@@ -40,14 +40,14 @@ export class AccueilComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
         if(result!=null){
-          console.log(result)
-            this.newContact = result;
-            this.newContact.Address = new AddressEntity();
-            this.newContact.Address.address = result.addressLabel;
-            this.newContact.phones = new PhoneNumberEntity();
-            this.newContact.phones.phoneNumber = result.phonelabel;
+          this.newContact = result;
+          this.newContact.address = new AddressEntity() ;
+          this.newContact.address.address = result?.addressLabel;
+          let phone :PhoneNumberEntity = new PhoneNumberEntity(result?.phonelabel);
+          // phone.contact =this.newContact;
+          this.newContact.phones = [phone];
             this.contactService.createContact(this.newContact).subscribe({
-              next :()=>{
+              next :(res)=>{
                 this.router.navigate(['/contacts']);
                  // this.toastService.success('Le contact est bien ajouté dans le répertoire',"Success")
               },

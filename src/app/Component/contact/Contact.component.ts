@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AddressEntity } from 'src/app/entities/AddressEntity';
 import { ContactEntity } from 'src/app/entities/ContactEntity';
 import { PhoneNumberEntity } from 'src/app/entities/PhoneNumberEntity';
 import { ContactService } from '../../services/Contact.service';
@@ -32,6 +33,7 @@ export class ContactComponent implements OnInit {
     this.contactService.getAllContacts()
     . subscribe ((data :ContactEntity [] )=>{
       this.contactList = data;
+      console.log(data)
     },
     (error:HttpErrorResponse)=>{
       alert(error.message);
@@ -46,9 +48,14 @@ export class ContactComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
         if(result!=null){
-          let phoneRes:PhoneNumberEntity=new PhoneNumberEntity()
-          let contactRes :ContactEntity = new ContactEntity(result.firstName, result.lastName,result.email);
-            this.contactService.updateContat(contactRes).subscribe({
+          result.idContact = contact.idContact;
+          let phoneRes:PhoneNumberEntity[]=[new PhoneNumberEntity("")];
+          let addressEntity:AddressEntity=new AddressEntity();
+          addressEntity.address = result.address;
+          result.address = addressEntity;
+          //let contactRes :ContactEntity = new ContactEntity(result.firstName, result.lastName,result.email,addressEntity);
+          console.log(result)
+            this.contactService.updateContat(result).subscribe({
               next :()=>{
                 this.router.navigate(['/contacts']);
                  // this.toastService.success('Le contact est bien ajouté dans le répertoire',"Success")
