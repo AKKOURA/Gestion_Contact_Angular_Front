@@ -1,21 +1,21 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { ContactService } from '../../../../services/Contact.service';
-import { ContactEntity } from '../../../../entities/ContactEntity';
+import { PhoneNumberEntity } from '../../../../entities/PhoneNumberEntity';
 
 @Component({
   selector: 'app-create-contact_modal',
   templateUrl: './create-contact_modal.component.html',
-  styleUrls: ['./create-contact_modal.component.css']
+  styleUrls: ['./create-contact_modal.component.css'] 
 })
+
 export class CreateContact_modalComponent implements OnInit {
 
   contactForm!: FormGroup;
   submitted!: boolean;
   isLoading: boolean = true; 
   @Input() modalTitle : string="";
+
 
   constructor(
    public dialogRef: MatDialogRef<CreateContact_modalComponent>,
@@ -30,7 +30,7 @@ export class CreateContact_modalComponent implements OnInit {
       lastName: new FormControl(null, Validators.required),
       email: new FormControl(null, Validators.required),
       addressLabel: new FormControl(null,Validators.required),
-     // contactGroups:new FormControl(null,Validators.required),
+     groupe:new FormControl(null,Validators.required),
      phonelabel:new FormControl(null,Validators.required)
     });
     
@@ -38,6 +38,7 @@ export class CreateContact_modalComponent implements OnInit {
   getReferentiels(){
 
   }
+  
 
   save() {
     this.dialogRef.close(this.contactForm.value);

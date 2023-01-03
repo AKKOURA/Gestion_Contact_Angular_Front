@@ -9,6 +9,7 @@ export class ContactEntity{
     lastName!: string;
     email! : string;
     address! : AddressEntity;
+
     contactGroups! : ContactGroupEntity[]|null;
     phones!: PhoneNumberEntity[]|null;  
 

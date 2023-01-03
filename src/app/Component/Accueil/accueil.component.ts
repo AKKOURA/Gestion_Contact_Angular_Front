@@ -7,6 +7,7 @@ import { ContactEntity } from 'src/app/entities/ContactEntity';
 import { AddressEntity } from 'src/app/entities/AddressEntity';
 import { ToastrService } from 'ngx-toastr';
 import { PhoneNumberEntity } from 'src/app/entities/PhoneNumberEntity';
+import { ContactGroupEntity } from 'src/app/entities/ContactGroupEntity';
 
 @Component({
   selector: 'app-accueil',
@@ -46,6 +47,10 @@ export class AccueilComponent implements OnInit {
           let phone :PhoneNumberEntity = new PhoneNumberEntity(result?.phonelabel);
           // phone.contact =this.newContact;
           this.newContact.phones = [phone];
+          let groupe : ContactGroupEntity = new ContactGroupEntity();
+          groupe.label =result?.groupe;
+          // phone.contact =this.newContact;
+          this.newContact.contactGroups = [groupe];
             this.contactService.createContact(this.newContact).subscribe({
               next :(res)=>{
                 this.router.navigate(['/contacts']);
