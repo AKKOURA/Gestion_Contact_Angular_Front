@@ -40,17 +40,15 @@ export class AccueilComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
         if(result!=null){
-          this.newContact = result;
+          this.newContact.lastName = result?.contactForm?.lastName;
+          this.newContact.firstName = result?.contactForm?.firstName;
+          this.newContact.email = result?.contactForm?.email;
           this.newContact.address = new AddressEntity() ;
-          this.newContact.address.address = result?.addressLabel;
-          let phone :PhoneNumberEntity = new PhoneNumberEntity(result?.phonelabel);
-          // phone.contact =this.newContact;
-          this.newContact.phones = [phone];
-          let groupe : ContactGroupEntity = new ContactGroupEntity();
-          groupe.label =result?.groupe;
-          // phone.contact =this.newContact;
-          this.newContact.contactGroups = [groupe];
+          this.newContact.address.address = result?.contactForm?.addressLabel;
+          this.newContact.phones = result.selectedPhones;
+           this.newContact.contactGroups = result.selectedGroupes;
             this.contactService.createContact(this.newContact).subscribe({
               next :(res)=>{
                 this.router.navigate(['/contacts']);

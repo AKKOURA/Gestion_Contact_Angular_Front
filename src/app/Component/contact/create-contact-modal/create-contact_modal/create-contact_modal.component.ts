@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PhoneNumberEntity } from '../../../../entities/PhoneNumberEntity';
+import { ContactGroupEntity } from '../../../../entities/ContactGroupEntity';
 
 @Component({
   selector: 'app-create-contact_modal',
@@ -16,6 +17,13 @@ export class CreateContact_modalComponent implements OnInit {
   isLoading: boolean = true; 
   @Input() modalTitle : string="";
 
+  phones : PhoneNumberEntity[] =[];
+  selectedPhoneIds!: number[];
+  addPhone = (term: any) => ({idPhoneNumber: term, phoneNumber: term});
+
+  groupes : ContactGroupEntity[] =[];
+  selectedGroupeIds!: number[];
+  addGroupe = (term: any) => ({idContactGroup: term, label: term});
 
   constructor(
    public dialogRef: MatDialogRef<CreateContact_modalComponent>,
@@ -24,24 +32,17 @@ export class CreateContact_modalComponent implements OnInit {
 
   
   ngOnInit(){
-    this.getReferentiels();
     this.contactForm = new FormGroup({
       firstName : new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
       email: new FormControl(null, Validators.required),
-      addressLabel: new FormControl(null,Validators.required),
-     groupe:new FormControl(null,Validators.required),
-     phonelabel:new FormControl(null,Validators.required)
+      addressLabel: new FormControl(null,Validators.required)
     });
     
   }
-  getReferentiels(){
-
-  }
-  
 
   save() {
-    this.dialogRef.close(this.contactForm.value);
+    this.dialogRef.close({contactForm:this.contactForm.value,selectedGroupes:this.selectedGroupeIds, selectedPhones:this.selectedPhoneIds});
   }
 
   close() {

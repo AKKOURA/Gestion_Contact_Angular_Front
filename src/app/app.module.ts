@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './Component/Accueil/accueil.component';
@@ -47,11 +46,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { UpdateContactModalComponent } from './Component/contact/update-contact-modal/update-contact-modal.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 const routes: Routes = [
   { path: '', component: AccueilComponent },
   { path: 'contacts', component: ContactComponent }
 ];
+
 
 @NgModule({
   declarations: [
@@ -108,8 +109,11 @@ const routes: Routes = [
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+}
