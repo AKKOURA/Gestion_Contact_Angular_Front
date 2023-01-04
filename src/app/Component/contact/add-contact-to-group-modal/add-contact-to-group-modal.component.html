@@ -1,1 +1,11 @@
 <p>Liste des groupe</p>
+<tbody>
+    <tr *ngFor="let group of groupList">
+        <td>{{ group.label }}</td>
+        
+        <td>
+          <button class="btn btn-primary"> ajouter</button>
+        </td>
+       
+      </tr>    
+</tbody>

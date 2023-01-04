@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PhoneNumberEntity } from '../../../../entities/PhoneNumberEntity';
 import { ContactGroupEntity } from '../../../../entities/ContactGroupEntity';
+import { ContactService } from 'src/app/services/Contact.service';
 
 @Component({
   selector: 'app-create-contact_modal',
@@ -27,6 +28,7 @@ export class CreateContact_modalComponent implements OnInit {
 
   constructor(
    public dialogRef: MatDialogRef<CreateContact_modalComponent>,
+   private contactService:ContactService
    //@Inject(MAT_DIALOG_DATA) public contact :ContactEntity,
   ) { }
 
@@ -38,6 +40,14 @@ export class CreateContact_modalComponent implements OnInit {
       email: new FormControl(null, Validators.required),
       addressLabel: new FormControl(null,Validators.required)
     });
+
+    this.contactService.getGroupes().subscribe((data=>{
+      this.groupes=data
+    }))
+
+    this.contactService.getPhones().subscribe((data=>{
+      this.phones=data
+    }))
     
   }
 
