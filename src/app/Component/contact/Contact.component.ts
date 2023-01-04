@@ -6,6 +6,7 @@ import { AddressEntity } from 'src/app/entities/AddressEntity';
 import { ContactEntity } from 'src/app/entities/ContactEntity';
 import { PhoneNumberEntity } from 'src/app/entities/PhoneNumberEntity';
 import { ContactService } from '../../services/Contact.service';
+import { AddContactToGroupModalComponent } from './add-contact-to-group-modal/add-contact-to-group-modal.component';
 import { UpdateContactModalComponent } from './update-contact-modal/update-contact-modal.component';
 
 
@@ -67,6 +68,12 @@ export class ContactComponent implements OnInit {
 
     });
 
+  }
+
+  public addContactToGroup(contact :ContactEntity){
+    const dialogRef = this.dialog.open(AddContactToGroupModalComponent, {
+      data:contact,
+    }); 
   }
 
   public deleteContact(contact :ContactEntity){
