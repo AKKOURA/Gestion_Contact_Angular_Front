@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './Component/Accueil/accueil.component';
 import { ContactComponent } from './Component/contact/Contact.component';
-import { FooterComponent } from './Component/footer/footer/footer.component';
+import { FooterComponent } from './Component/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
