@@ -37,6 +37,7 @@ export class AccueilComponent implements OnInit {
   addContact() {
     const dialogRef = this.dialog.open(CreateContact_modalComponent, {
       data: {},
+      
     });
 
     dialogRef.afterClosed().subscribe(result => {

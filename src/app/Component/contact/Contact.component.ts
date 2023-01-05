@@ -1,3 +1,4 @@
+import { AriaDescriber } from '@angular/cdk/a11y';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,9 +18,9 @@ import { UpdateContactModalComponent } from './update-contact-modal/update-conta
   styleUrls: ['./Contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-
+   address: any;
   contactList: ContactEntity[] = [];
-
+  
   constructor(
     private contactService : ContactService,
     private dialog: MatDialog,
@@ -29,6 +30,7 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
     this.getAllContacts();
   }
+
 
   public getAllContacts(){
     this.contactService.getAllContacts()
@@ -49,14 +51,15 @@ export class ContactComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
         if(result!=null){
-          result.idContact = contact.idContact;
-          let phoneRes:PhoneNumberEntity[]=[new PhoneNumberEntity("")];
-          let addressEntity:AddressEntity=new AddressEntity();
-          addressEntity.address = result.address;
-          result.address = addressEntity;
-          //let contactRes :ContactEntity = new ContactEntity(result.firstName, result.lastName,result.email,addressEntity);
-          console.log(result)
-            this.contactService.updateContat(result).subscribe({
+          contact.lastName = result?.contactForm?.lastName;
+          contact.firstName = result?.contactForm?.firstName;
+          contact.email = result?.contactForm?.email;
+          contact.address.address = result?.contactForm?.address;
+          contact.phones = result.selectedPhones;
+          console.log(result.selectedPhones);
+          console.log(result.selectedGroupes)
+          contact.contactGroups = result.selectedGroupes;
+            this.contactService.updateContat(contact).subscribe({
               next :()=>{
                 this.router.navigate(['/contacts']);
                  // this.toastService.success('Le contact est bien ajouté dans le répertoire',"Success")

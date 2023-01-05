@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ContactEntity } from '../entities/ContactEntity';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { PhoneNumberEntity } from '../entities/PhoneNumberEntity';
 import { ContactGroupEntity } from '../entities/ContactGroupEntity';
-
+const httpOptionsPlain = {
+  headers: new HttpHeaders({
+    'Accept': 'text/plain',
+    'Content-Type': 'text/plain'
+  }),
+  'responseType': 'text'
+};
 @Injectable({
   providedIn: 'root'
 })
 
+
 export class ContactService {
+  
 
 constructor(private http: HttpClient) { }
 
@@ -38,6 +46,10 @@ getPhones() : Observable<PhoneNumberEntity[]>{
 }
 getGroupes() : Observable<ContactGroupEntity[]>{
   return this.http.get<ContactGroupEntity[]>(`http://localhost:8080/CarnetContactProjet/groupes`);
+}
+
+getAdressByIdContact( idContact : number) : Observable<any>{
+  return this.http.get(`http://localhost:8080/CarnetContactProjet/${idContact}/address`, {responseType: 'text'});
 }
 
 
