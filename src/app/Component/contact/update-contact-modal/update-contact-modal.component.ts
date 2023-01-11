@@ -1,6 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NgSelectComponent } from '@ng-select/ng-select';
 import { forkJoin } from 'rxjs';
 import { ContactEntity } from 'src/app/entities/ContactEntity';
 import { ContactGroupEntity } from 'src/app/entities/ContactGroupEntity';
@@ -18,12 +20,12 @@ export class UpdateContactModalComponent implements OnInit {
   submitted!: boolean;
   isLoading: boolean = true; 
   phones : PhoneNumberEntity[] =[];
-  selectedPhones : PhoneNumberEntity[] =[];
-  selectedPhoneIds!: number[];
+  selectedPhones!: any[];
   addPhone = (term: any) => ({idPhoneNumber: term, phoneNumber: term});
-
+  
   groupes : ContactGroupEntity[] =[];
-  selectedGroupeIds!: number[];
+  selectedGroupes!: any[];
+
   addGroupe = (term: any) => ({idContactGroup: term, label: term});
 
   constructor(
@@ -41,29 +43,32 @@ export class UpdateContactModalComponent implements OnInit {
       firstName : new FormControl(this.contact?.firstName, Validators.required),
       lastName: new FormControl(this.contact?.lastName, Validators.required),
       email: new FormControl(this.contact?.email, Validators.required),
-      address: new FormControl(this.contact?.address?.address),
+      address: new FormControl(this.contact?.address?.address, Validators.required)
     });
     
   }
+
   getReferentiels(){
    forkJoin([
     this.contactService.getGroupesByIdContact(this.contact.idContact),
-    this.contactService.getPhonesByIdContact(this.contact.idContact)
-   ]).subscribe((data : [ContactGroupEntity[],PhoneNumberEntity[]] )=>{
+    this.contactService.getPhonesByIdContact(this.contact.idContact),
+    this.contactService.getGroupes(),
+    this.contactService.getPhones(),
+   ]).subscribe((data : [ContactGroupEntity[],PhoneNumberEntity[],ContactGroupEntity[],PhoneNumberEntity[]] )=>{
+      this.groupes =data[2];
       this.phones =data[1];
-      this.groupes =data[0];
-      this.selectedGroupeIds = data[0].map(g => g.idContactGroup);
-      this.selectedPhoneIds =  data[1].map(g => g.idPhoneNumber);
- 
+      this.selectedGroupes= data[0].map(g => g.label);
+      this.selectedPhones =  data[1].map(g => g.phoneNumber);
     })
   }
-
+  
   save() {
-    this.dialogRef.close({contactForm:this.contactForm.value,selectedGroupes:this.selectedGroupeIds, selectedPhones:this.selectedPhoneIds});
+    this.dialogRef.close({contactForm:this.contactForm.value,selectedGroupes:this.selectedGroupes, selectedPhones:this.selectedPhones});
   }
 
+
   close() {
-      this.dialogRef.close();
+    this.dialogRef.close();
   }
 
 

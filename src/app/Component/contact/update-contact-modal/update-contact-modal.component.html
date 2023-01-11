@@ -1,12 +1,12 @@
 
 
     <mat-dialog-content>
-      <h1 mat-dialog-title> Modifier le contact </h1>
+      <h2 mat-dialog-title> Modifier le contact </h2>
       <mat-form-field  [formGroup]="contactForm" style="width : 400px;">
-          <input matInput placeholder="firstName" formControlName="firstName" [(ngModel)]="contact.firstName" >
+          <input matInput placeholder="firstName" formControlName="firstName" [(ngModel)]="contact.firstName">
       </mat-form-field>
       <br>
-      <mat-form-field  [formGroup]="contactForm" style="width : 400px;">
+      <mat-form-field  [formGroup]="contactForm"style="width : 400px;">
         <input matInput placeholder="lastName" formControlName="lastName" [(ngModel)]="contact.lastName">
      </mat-form-field>
      <br>
@@ -14,7 +14,7 @@
         <input matInput placeholder="email" formControlName="email" [(ngModel)]="contact.email">
      </mat-form-field>
      <br>
-      <mat-form-field [formGroup]="contactForm"style="width : 400px;">
+      <mat-form-field [formGroup]="contactForm" style="width : 400px;">
         <input matInput placeholder="address" formControlName="address">
     </mat-form-field>
     <br>
@@ -22,17 +22,23 @@
     <ng-select 
       [items]="phones"
       bindLabel="phoneNumber"
-      bindValue="idPhoneNumber"
+      bindValue="phoneNumber"
+      [addTag]="addPhone"
       [multiple]="true"
-      [(ngModel)]="selectedPhoneIds">
+      placeholder="Modifier les numéros de téléphones"
+      [(ngModel)]="selectedPhones">
     </ng-select>
     <br> 
     <ng-select 
+      #select
       [items]="groupes"
       bindLabel="label"
-      bindValue="idContactGroup"
+      bindValue="label"
+      [addTag]="addGroupe"
       [multiple]="true"
-      [(ngModel)]="selectedGroupeIds">
+      placeholder="Modifier les groupes"
+      [(ngModel)]="selectedGroupes"
+      >
     </ng-select>
   </mat-dialog-content>
   

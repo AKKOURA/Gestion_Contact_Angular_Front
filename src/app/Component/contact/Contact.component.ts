@@ -43,6 +43,28 @@ export class ContactComponent implements OnInit {
       }
     );
   }
+  updatePhones(selectedPhones :any[], idContact :number){
+    this.contactService.addPhonesToContact(selectedPhones,idContact)
+    . subscribe ((result : boolean )=>{
+     console.log(result)
+    },
+    (error:HttpErrorResponse)=>{
+      alert(error.message);
+      }
+    );
+
+  }
+  updateGroupes(selectedGroupes :any[], idContact :number){
+    this.contactService.addGroupesToContact(selectedGroupes,idContact)
+    . subscribe ((result : boolean )=>{
+     console.log(result)
+    },
+    (error:HttpErrorResponse)=>{
+      alert(error.message);
+      }
+    );
+    
+  }
   public updateContact(contact :ContactEntity){
 
     const dialogRef = this.dialog.open(UpdateContactModalComponent, {
@@ -56,11 +78,10 @@ export class ContactComponent implements OnInit {
           contact.email = result?.contactForm?.email;
           contact.address.address = result?.contactForm?.address;
           contact.phones = result.selectedPhones;
-          console.log(result.selectedPhones);
-          console.log(result.selectedGroupes)
-          contact.contactGroups = result.selectedGroupes;
+          //contact.contactGroups = result.selectedGroupes;
             this.contactService.updateContat(contact).subscribe({
               next :()=>{
+                this.updateGroupes(result.selectedGroupes,contact.idContact)
                 this.router.navigate(['/contacts']);
                  // this.toastService.success('Le contact est bien ajouté dans le répertoire',"Success")
               },

@@ -32,7 +32,13 @@ createContact(newContact:ContactEntity):Observable<boolean>{
   return this.http.post<boolean>("http://localhost:8080/CarnetContactProjet/create",newContact);
 }
 updateContat(contactToUpdate:ContactEntity):Observable<boolean>{
-  return this.http.post<boolean>("http://localhost:8080/CarnetContactProjet/edit",contactToUpdate);
+  return this.http.post<boolean>("http://localhost:8080/CarnetContactProjet/update",contactToUpdate);
+}
+addPhonesToContact(phones : any[],idContact :number):Observable<boolean>{
+  return this.http.post<boolean>(`http://localhost:8080/CarnetContactProjet/add-phones-to-contact/${idContact}`,phones);
+}
+addGroupesToContact(groupes : any[],idContact :number):Observable<boolean>{
+  return this.http.post<boolean>(`http://localhost:8080/CarnetContactProjet/add-groupes-to-contact/${idContact}`,groupes);
 }
 getPhonesByIdContact( idContact : number) : Observable<PhoneNumberEntity[]>{
   return this.http.get<PhoneNumberEntity[]>(`http://localhost:8080/CarnetContactProjet/${idContact}/phones`);
