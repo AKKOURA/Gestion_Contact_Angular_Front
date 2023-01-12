@@ -29,7 +29,7 @@ export class AccueilComponent implements OnInit {
     private contactService : ContactService,
     private dialog: MatDialog,
     private router: Router,
-    //private toastService: ToastrService
+    private toastService: ToastrService
   ) {  }
 
   ngOnInit() {
@@ -53,9 +53,9 @@ export class AccueilComponent implements OnInit {
             this.contactService.createContact(this.newContact).subscribe({
               next :(res)=>{
                 this.router.navigate(['/contacts']);
-                 // this.toastService.success('Le contact est bien ajouté dans le répertoire',"Success")
+                  this.toastService.success('Le contact est bien ajouté dans le répertoire',"Succès")
               },
-              //error :()=>  //this.toastService.error('Erreur lors de lajout',"Error")
+              error :()=>  this.toastService.error('Erreur lors de lajout',"Erreur")
             });
          
         }

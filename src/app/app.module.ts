@@ -68,6 +68,9 @@ const routes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ToastrModule.forRoot({
+      positionClass :'toast-top-right'
+    }),
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatDialogModule,

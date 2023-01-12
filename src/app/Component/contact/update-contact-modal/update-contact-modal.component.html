@@ -1,20 +1,20 @@
 
 
-    <mat-dialog-content>
-      <h2 mat-dialog-title> Modifier le contact </h2>
-      <mat-form-field  [formGroup]="contactForm" style="width : 400px;">
+    <mat-dialog-content style="width : 600px; height: 1500px; background-color:aliceblue">
+      <h2 mat-dialog-title style="text-align : center;"> Modifier le contact </h2>
+      <mat-form-field  [formGroup]="contactForm" style="width : 500px;">
           <input matInput placeholder="firstName" formControlName="firstName" [(ngModel)]="contact.firstName">
       </mat-form-field>
       <br>
-      <mat-form-field  [formGroup]="contactForm"style="width : 400px;">
+      <mat-form-field  [formGroup]="contactForm"style="width : 500px;">
         <input matInput placeholder="lastName" formControlName="lastName" [(ngModel)]="contact.lastName">
      </mat-form-field>
      <br>
-      <mat-form-field  [formGroup]="contactForm" style="width : 400px;">
+      <mat-form-field  [formGroup]="contactForm" style="width : 500px;">
         <input matInput placeholder="email" formControlName="email" [(ngModel)]="contact.email">
      </mat-form-field>
      <br>
-      <mat-form-field [formGroup]="contactForm" style="width : 400px;">
+      <mat-form-field [formGroup]="contactForm" style="width : 500px;">
         <input matInput placeholder="address" formControlName="address">
     </mat-form-field>
     <br>
@@ -26,7 +26,9 @@
       [addTag]="addPhone"
       [multiple]="true"
       placeholder="Modifier les numéros de téléphones"
-      [(ngModel)]="selectedPhones">
+      [(ngModel)]="selectedPhones"
+      style="width : 500px;">
+      >
     </ng-select>
     <br> 
     <ng-select 
@@ -38,13 +40,14 @@
       [multiple]="true"
       placeholder="Modifier les groupes"
       [(ngModel)]="selectedGroupes"
+      style="width : 500px;"
       >
     </ng-select>
   </mat-dialog-content>
   
   <div mat-dialog-actions>
-    <button type="submit" mat-raised-button color="primary" (click)="save()">Valider</button>
-    <button mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised" (click)="close()">Annuler</button>
+    <button type="submit" mat-raised-button color="primary" style="width : 170px;" (click)="save()">Valider</button>
+    <button mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised"  style="width : 170px;" (click)="close()">Annuler</button>
   </div>
 
   

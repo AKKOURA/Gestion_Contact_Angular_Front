@@ -9,6 +9,8 @@ import { PhoneNumberEntity } from 'src/app/entities/PhoneNumberEntity';
 import { ContactService } from '../../services/Contact.service';
 import { AddContactToGroupModalComponent } from './add-contact-to-group-modal/add-contact-to-group-modal.component';
 import { UpdateContactModalComponent } from './update-contact-modal/update-contact-modal.component';
+import { ToastrService } from 'ngx-toastr';
+import { CreateContact_modalComponent } from './create-contact-modal/create-contact_modal/create-contact_modal.component';
 
 
 
@@ -20,11 +22,20 @@ import { UpdateContactModalComponent } from './update-contact-modal/update-conta
 export class ContactComponent implements OnInit {
    address: any;
   contactList: ContactEntity[] = [];
-  
+  public newContact :ContactEntity={
+    idContact :0,
+    firstName : "",
+    lastName: "",
+    email: "",
+    address : new AddressEntity(),
+    contactGroups: [],
+    phones : [new PhoneNumberEntity("")] ,
+};
   constructor(
     private contactService : ContactService,
     private dialog: MatDialog,
     private router: Router,
+    private toastService : ToastrService
   ) { }
 
   ngOnInit() {
@@ -83,15 +94,43 @@ export class ContactComponent implements OnInit {
               next :()=>{
                 this.updateGroupes(result.selectedGroupes,contact.idContact)
                 this.router.navigate(['/contacts']);
-                 // this.toastService.success('Le contact est bien ajouté dans le répertoire',"Success")
+                  this.toastService.success('Le contact est bien été modifié ',"Succès")
               },
-              //error :()=>  //this.toastService.error('Erreur lors de lajout',"Error")
+              error :()=>  this.toastService.error('Erreur lors de la modification',"Erreur")
             });
          
         }
 
     });
 
+  }
+  addContact() {
+    const dialogRef = this.dialog.open(CreateContact_modalComponent, {
+      data: {},
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+        if(result!=null){
+          this.newContact.lastName = result?.contactForm?.lastName;
+          this.newContact.firstName = result?.contactForm?.firstName;
+          this.newContact.email = result?.contactForm?.email;
+          this.newContact.address = new AddressEntity() ;
+          this.newContact.address.address = result?.contactForm?.addressLabel;
+          this.newContact.phones = result.selectedPhones;
+           this.newContact.contactGroups = result.selectedGroupes;
+            this.contactService.createContact(this.newContact).subscribe({
+              next :(res)=>{
+                this.router.navigate(['/contacts']);
+                  this.toastService.success('Le contact est bien ajouté dans le répertoire',"Succès")
+              },
+              error :()=>  this.toastService.error('Erreur lors de lajout',"Erreur")
+            });
+         
+        }
+
+    });
   }
 
   public addContactToGroup(contact :ContactEntity){
