@@ -47,6 +47,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { UpdateContactModalComponent } from './Component/contact/update-contact-modal/update-contact-modal.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AddContactToGroupModalComponent } from './Component/contact/add-contact-to-group-modal/add-contact-to-group-modal.component';
 
 const routes: Routes = [
   { path: '', component: AccueilComponent },
@@ -62,6 +63,7 @@ const routes: Routes = [
     AccueilComponent,
     CreateContact_modalComponent,
     UpdateContactModalComponent,
+    AddContactToGroupModalComponent,
   ],
   imports: [
     BrowserModule,

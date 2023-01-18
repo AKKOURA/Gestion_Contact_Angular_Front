@@ -25,4 +25,8 @@ export class AddContactToGroupModalComponent implements OnInit {
     })
   }
 
+  public ajouter(idGroupe:any){
+    //service d'envoie
+  }
+
 }
