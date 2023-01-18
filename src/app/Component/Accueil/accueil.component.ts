@@ -8,6 +8,7 @@ import { AddressEntity } from 'src/app/entities/AddressEntity';
 import { ToastrService } from 'ngx-toastr';
 import { PhoneNumberEntity } from 'src/app/entities/PhoneNumberEntity';
 import { ContactGroupEntity } from 'src/app/entities/ContactGroupEntity';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-accueil',
@@ -24,7 +25,9 @@ export class AccueilComponent implements OnInit {
     address : new AddressEntity(),
     contactGroups: [],
     phones : [new PhoneNumberEntity("")] ,
-};
+  };
+  contactList : ContactEntity[]=[];
+
   constructor(
     private contactService : ContactService,
     private dialog: MatDialog,
@@ -34,6 +37,7 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   addContact() {
     const dialogRef = this.dialog.open(CreateContact_modalComponent, {
       data: {},

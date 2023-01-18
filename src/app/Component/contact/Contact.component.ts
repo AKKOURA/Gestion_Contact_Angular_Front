@@ -121,8 +121,8 @@ export class ContactComponent implements OnInit {
           this.newContact.phones = result.selectedPhones;
            this.newContact.contactGroups = result.selectedGroupes;
             this.contactService.createContact(this.newContact).subscribe({
-              next :(res)=>{
-                this.router.navigate(['/contacts']);
+              next :()=>{
+                   window.location.reload();
                   this.toastService.success('Le contact est bien ajouté dans le répertoire',"Succès")
               },
               error :()=>  this.toastService.error('Erreur lors de lajout',"Erreur")
