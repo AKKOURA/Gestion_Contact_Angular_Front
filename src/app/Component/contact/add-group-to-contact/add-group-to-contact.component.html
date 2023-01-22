@@ -24,6 +24,9 @@
   <h1 mat-dialog-title>
     Liste des groupes à joindre
   </h1>
+  <div *ngIf="groupesToJoin == []">
+    <p>Aucun groupe à joindre, on vous invite à en ajouter.</p>
+  </div>
   <div mat-dialog-content>
 
       <tr *ngFor="let group of groupesToJoin">

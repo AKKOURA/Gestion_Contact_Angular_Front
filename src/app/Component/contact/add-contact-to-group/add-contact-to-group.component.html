@@ -2,8 +2,10 @@
 <h1 mat-dialog-title>
   Liste des contacts à ajouter dans le groupe {{groupe.label}}
 </h1>
+<div  *ngIf="contactToAddList == []">
+  <p>Aucun contact à ajouter</p>
+</div>
 <div mat-dialog-content>
-
     <tr *ngFor="let contact of contactToAddList ">
       <td> <h2 style="margin-top: 30%;">{{ contact.firstName }}  {{contact.lastName}}</h2></td>
       

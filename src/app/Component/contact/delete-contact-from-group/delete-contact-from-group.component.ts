@@ -26,6 +26,7 @@ export class DeleteContactFromGroupComponent implements OnInit {
   ngOnInit() {
     this.contactService.getContactsByGroup(this.groupe.idContactGroup).subscribe((data:any[])=>{
       this.contactsGroup = data;
+      console.log(data)
     })
   }
  

@@ -2,8 +2,12 @@
 <h1 mat-dialog-title>
   Liste des groupes à retirer
 </h1>
+
 <div mat-dialog-content>
-  <tbody>
+  <div *ngIf ="groupOfContactList == []">
+    <p>Aucun groupe à retirer, on vous invite à en ajouter.</p>
+  </div>
+  <tbody >
     <tr *ngFor="let group of groupOfContactList">
         <td><h2 style="margin-top: 30%;">{{ group.label }}</h2></td>
         
