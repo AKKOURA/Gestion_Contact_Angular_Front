@@ -17,6 +17,7 @@ const httpOptionsPlain = {
 
 
 export class ContactService {
+
   
 
   constructor(private http: HttpClient) { }
@@ -63,7 +64,7 @@ getGroupesByIdContact(idContact : number) : Observable<ContactGroupEntity[]>{
   }
 
   deleteGroupeFromContact(idGroupe : number, idContact : number):Observable<boolean>{
-    return this.http.get<boolean>(`http://localhost:8080/CarnetContactProjet/delete-group/${idGroupe}/to-contact/${idContact}`);
+    return this.http.get<boolean>(`http://localhost:8080/CarnetContactProjet/delete-group/${idGroupe}/from-contact/${idContact}`);
   }
 
   getGroupesForAddCntact(idContact : number) : Observable<ContactGroupEntity[]>{
@@ -80,5 +81,23 @@ getGroupesByIdContact(idContact : number) : Observable<ContactGroupEntity[]>{
   getAdressByIdContact( idContact : number) : Observable<any>{
     return this.http.get(`http://localhost:8080/CarnetContactProjet/${idContact}/address`, {responseType: 'text'});
   }
+
+  addContactToGroup(idContact: number, idContactGroup: number) :Observable<boolean>{
+    return this.http.get<boolean>(`http://localhost:8080/CarnetContactProjet/add-contact/${idContact}/to-group/${idContactGroup}`);
+  }
+
+  deleteContactFromGroup(idContact: number, idContactGroup: number) :Observable<boolean>{
+    return this.http.get<boolean>(`http://localhost:8080/CarnetContactProjet/delete-contact/${idContact}/from-group/${idContactGroup}`);
+  }
+
+  getContactsForJoinGroup(idGroup : number): Observable<ContactEntity[]>{
+    return this.http.get<ContactEntity[]>(`http://localhost:8080/CarnetContactProjet/contacts-for-join-group/${idGroup}`);
+  }
+
+  getContactsByGroup(idGroup : number): Observable<ContactEntity[]>{
+    return this.http.get<ContactEntity[]>(`http://localhost:8080/CarnetContactProjet/contacts-by-group/${idGroup}`);
+  }
+
+
 
 }

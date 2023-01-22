@@ -50,9 +50,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { GroupeComponent } from './groupe/groupe.component';
 import { CreateGroupeModalComponent } from './groupe/create-groupe-modal/create-groupe-modal.component';
 import { UpdateGroupeModalComponent } from './groupe/update-groupe-modal/update-groupe-modal.component';
-import { AddContactToGroupModalComponent } from './Component/contact/add-contact-to-group-modal/add-contact-to-group-modal.component';
-import { DeteteContactFromGroupComponent } from './Component/contact/detete-contact-from-group/detete-contact-from-group.component';
+import { AddGroupToContactComponent } from './Component/contact/add-group-to-contact/add-group-to-contact..component';
+import { DeleteGroupFromContactComponent } from './Component/contact/delete-group-from-contact/delete-group-from-contact.component';
 import { ConfirmDialogComponent } from './Component/confirm-dialog/confirm-dialog.component';
+import { AddContactToGroupComponent } from './Component/contact/add-contact-to-group/add-contact-to-group.component';
+import { DeleteContactFromGroupComponent } from './Component/contact/delete-contact-from-group/delete-contact-from-group.component';
 
 const routes: Routes = [
   { path: '', component: AccueilComponent },
@@ -72,9 +74,11 @@ const routes: Routes = [
     GroupeComponent,
     CreateGroupeModalComponent,
     UpdateGroupeModalComponent,
-    AddContactToGroupModalComponent,
-    DeteteContactFromGroupComponent,
-    ConfirmDialogComponent
+    AddGroupToContactComponent,
+    DeleteGroupFromContactComponent,
+    ConfirmDialogComponent,
+    AddContactToGroupComponent,
+    DeleteContactFromGroupComponent
 
   ],
   imports: [

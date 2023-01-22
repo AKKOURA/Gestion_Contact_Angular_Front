@@ -7,17 +7,17 @@ import { ContactGroupEntity } from 'src/app/entities/ContactGroupEntity';
 import { ContactService } from 'src/app/services/Contact.service';
 
 @Component({
-  selector: 'app-detete-contact-from-group',
-  templateUrl: './detete-contact-from-group.component.html',
-  styleUrls: ['./detete-contact-from-group.component.scss']
+  selector: 'app-delete-group-from-contact',
+  templateUrl: './delete-group-from-contact.component.html',
+  styleUrls: ['./delete-group-from-contact.component.scss']
 })
-export class DeteteContactFromGroupComponent implements OnInit {
+export class DeleteGroupFromContactComponent implements OnInit {
 
 
   groupOfContactList:ContactGroupEntity[] =[];
 
   constructor(
-    private dialogRef: MatDialogRef<DeteteContactFromGroupComponent>,
+    private dialogRef: MatDialogRef<DeleteGroupFromContactComponent>,
     private contactService : ContactService,
     @Inject(MAT_DIALOG_DATA) public contact :ContactEntity,
     private toastService : ToastrService
@@ -33,7 +33,7 @@ export class DeteteContactFromGroupComponent implements OnInit {
     this.contactService.deleteGroupeFromContact(idContactGroup,idContact)
     . subscribe (()=>{
       this.ngOnInit();
-     this.toastService.success('Le contact a bien été retiré du groupe',"Succès");
+     this.toastService.success('Ce groupe a bien été retiré du ce contact',"Succès");
    
     },
     (error:HttpErrorResponse)=>{

@@ -14,6 +14,8 @@ import { ContactGroupEntity } from '../entities/ContactGroupEntity';
 import { CreateGroupeModalComponent } from './create-groupe-modal/create-groupe-modal.component';
 import { UpdateGroupeModalComponent } from './update-groupe-modal/update-groupe-modal.component';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../Component/confirm-dialog/confirm-dialog.component';
+import { AddContactToGroupComponent } from '../Component/contact/add-contact-to-group/add-contact-to-group.component';
+import { DeleteContactFromGroupComponent } from '../Component/contact/delete-contact-from-group/delete-contact-from-group.component';
 @Component({
   selector: 'app-groupe',
   templateUrl: './groupe.component.html',
@@ -149,7 +151,9 @@ public newGroupe :ContactGroupEntity={
     });
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      this.deleteGroupe(groupe);
+      if(dialogResult != false){
+        this.deleteGroupe(groupe);
+      }
     });
   }
   
@@ -167,4 +171,16 @@ public newGroupe :ContactGroupEntity={
     );
   }
 
+  public addContactToGroup(group : ContactGroupEntity){
+    const dialogRef = this.dialog.open(AddContactToGroupComponent, {
+      data:group,
+    }); 
+  }
+
+  public deleteContactFromGroup(group : ContactGroupEntity){
+    const dialogRef = this.dialog.open(DeleteContactFromGroupComponent, {
+      data:group,
+    }); 
+  }
+  
 }

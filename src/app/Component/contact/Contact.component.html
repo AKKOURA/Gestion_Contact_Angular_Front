@@ -40,7 +40,7 @@
             <div class="navbar-nav ms-auto py-0 me-n3">
                 <a href="" class="nav-item nav-link ">Accueil</a>
                 <a href="/contacts" class="nav-item nav-link active">Contacts</a>
-                <a class="nav-item nav-link" (click) = "addContact()">Ajout contact</a>
+                <!-- <a class="nav-item nav-link" (click) = "addContact()">Ajout contact</a> -->
                 <a href="/groupes" class="nav-item nav-link">Groupes</a>
                 <a  (click)="addGroupe()" class="nav-item nav-link">Ajout groupe</a>
             </div>
@@ -49,6 +49,8 @@
   </div>
     <!-- Navbar End -->
 <div class="container" style="margin-top: 70px;">
+  <button class="btn btn-success" (click)="addContact()"> Nouveau contact</button>
+  <br><br><br>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -71,10 +73,10 @@
           <button class="btn btn-success" (click)="updateContact(contact)"> Modifier</button>
         </td>
         <td>
-          <button class="btn btn-warning" (click)="addContactToGroup(contact)"  data-toggle="tooltip" data-placement="bottom" title="permet d'ajouter le contact séléctionné à un ou plusieurs groupes"> ajouter à un groupe</button>
+          <button class="btn btn-warning" (click)="addGroupToContact(contact)"  data-toggle="tooltip" data-placement="bottom" title="permet d'ajouter le contact séléctionné à un ou plusieurs groupes"> ajouter un groupe</button>
         </td>
         <td>
-          <button class="btn btn-warning" (click)="deleteContactFromGroup(contact)"  data-toggle="tooltip" data-placement="bottom" title="Permet de retirer le contact séléctionné d'un ou plusieurs groupes">retirer un groupe </button>
+          <button class="btn btn-warning" (click)="deleteGroupFromContact(contact)"  data-toggle="tooltip" data-placement="bottom" title="Permet de retirer le contact séléctionné d'un ou plusieurs groupes">retirer un groupe </button>
         </td>
         <td>
           <button class="btn btn-danger" (click)="confirmDialog(contact)" data-toggle="tooltip" data-placement="bottom" title="Permet de supprimer le contact avec toutes ces reférences"> spprimer</button>

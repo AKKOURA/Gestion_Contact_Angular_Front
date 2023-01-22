@@ -1,0 +1,18 @@
+
+<h1 mat-dialog-title>
+  Liste des contacts à ajouter dans le groupe {{groupe.label}}
+</h1>
+<div mat-dialog-content>
+
+    <tr *ngFor="let contact of contactToAddList ">
+      <td> <h2 style="margin-top: 30%;">{{ contact.firstName }}  {{contact.lastName}}</h2></td>
+      
+      <td style="padding-left: 100px;">
+        <button class="btn btn-primary" (click) = "addContactToGroup(contact.idContact,groupe.idContactGroup)" mat-raised-button color="primary"  style="width : 80px;"> Ajouter</button>
+      </td>
+    
+    </tr>   
+</div>
+<div mat-dialog-actions style="float: right;">
+  <button mat-raised-button color="Disabled" (click)="close()">Fermer</button>
+</div>

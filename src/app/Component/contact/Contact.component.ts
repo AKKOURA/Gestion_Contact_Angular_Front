@@ -7,14 +7,14 @@ import { AddressEntity } from 'src/app/entities/AddressEntity';
 import { ContactEntity } from 'src/app/entities/ContactEntity';
 import { PhoneNumberEntity } from 'src/app/entities/PhoneNumberEntity';
 import { ContactService } from '../../services/Contact.service';
-import { AddContactToGroupModalComponent } from './add-contact-to-group-modal/add-contact-to-group-modal.component';
 import { UpdateContactModalComponent } from './update-contact-modal/update-contact-modal.component';
 import { ToastrService } from 'ngx-toastr';
 import { CreateContact_modalComponent } from './create-contact-modal/create-contact_modal/create-contact_modal.component';
-import { DeteteContactFromGroupComponent } from './detete-contact-from-group/detete-contact-from-group.component';
+import { DeleteGroupFromContactComponent } from './delete-group-from-contact/delete-group-from-contact.component';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
 import { ContactGroupEntity } from 'src/app/entities/ContactGroupEntity';
 import { CreateGroupeModalComponent } from 'src/app/groupe/create-groupe-modal/create-groupe-modal.component';
+import { AddGroupToContactComponent } from './add-group-to-contact/add-group-to-contact..component';
 
 
 
@@ -121,16 +121,16 @@ export class ContactComponent implements OnInit {
     });
   }
 
-  public addContactToGroup(contact :ContactEntity){
+  public addGroupToContact(contact :ContactEntity){
 
-    const dialogRef = this.dialog.open(AddContactToGroupModalComponent, {
+    const dialogRef = this.dialog.open(AddGroupToContactComponent, {
       data:contact,
     }); 
   }
 
-  public deleteContactFromGroup(contact :ContactEntity){
+  public deleteGroupFromContact(contact :ContactEntity){
 
-    const dialogRef = this.dialog.open(DeteteContactFromGroupComponent, {
+    const dialogRef = this.dialog.open(DeleteGroupFromContactComponent, {
       data:contact,
     }); 
   }
@@ -145,8 +145,10 @@ export class ContactComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      this.result = dialogResult;
-      this.deleteContact(contact);
+      if(dialogResult != false){
+        this.deleteContact(contact);
+      }
+    
     });
   }
 

@@ -7,16 +7,16 @@ import { ContactService } from 'src/app/services/Contact.service';
 import { ContactGroupEntity } from '../../../entities/ContactGroupEntity';
 
 @Component({
-  selector: 'app-add-contact-to-group-modal',
-  templateUrl: './add-contact-to-group-modal.component.html',
-  styleUrls: ['./add-contact-to-group-modal.component.scss']
+  selector: 'app-add-group-to-contact.',
+  templateUrl: './add-group-to-contact.component.html',
+  styleUrls: ['./add-group-to-contact.component.scss']
 })
-export class AddContactToGroupModalComponent implements OnInit {
+export class AddGroupToContactComponent implements OnInit {
 
   groupesToJoin: ContactGroupEntity[] =[];
 
   constructor(
-    private dialogRef: MatDialogRef<AddContactToGroupModalComponent>,
+    private dialogRef: MatDialogRef<AddGroupToContactComponent>,
     private contactService : ContactService,
     @Inject(MAT_DIALOG_DATA) public contact :ContactEntity,
     private toastService : ToastrService
@@ -33,7 +33,7 @@ export class AddContactToGroupModalComponent implements OnInit {
     this.contactService.addGroupeToContact(idContactGroup,idContact)
     . subscribe (()=>{
      this.ngOnInit();
-     this.toastService.success('Le contact a bien été ajouté à ce groupe',"Succès");
+     this.toastService.success('Ce groupe a bien été ajouté à ce contact ',"Succès");
     },
     (error:HttpErrorResponse)=>{
       this.toastService.error('Erreur lors de lajout',"Erreur")
@@ -41,26 +41,10 @@ export class AddContactToGroupModalComponent implements OnInit {
     );
   }
   
-  deleteGroupFromContact(idContactGroup: number,idContact: number) {
-    this.contactService.deleteGroupeFromContact(idContactGroup,idContact)
-    . subscribe ((result : boolean )=>{
-     console.log(result);
-     this.toastService.success('Le groupe a bien été supprimé au contact',"Succès");
-    },
-    (error:HttpErrorResponse)=>{
-      this.toastService.error('Erreur lors de la supression',"Erreur")
-      }
-    );
-  }
   close(): void {
     // Close the dialog, return false
     this.dialogRef.close(false);
   }
  
-    
-
-  public ajouter(idGroupe:any){
-    //service d'envoie
-  }
 
 }

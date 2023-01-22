@@ -67,6 +67,12 @@
           <button class="btn btn-success" (click)="updateGroupe(groupe)"> Modifier</button>
         </td>
         <td>
+          <button class="btn btn-warning" (click)="addContactToGroup(groupe)"  data-toggle="tooltip" data-placement="bottom" title="permet d'ajouter un ou plusieurs contacts dans le groupe séléctionné">ajouter un contact</button>
+        </td>
+        <td>
+          <button class="btn btn-warning" (click)="deleteContactFromGroup(groupe)"  data-toggle="tooltip" data-placement="bottom" title="Permet de retirer un ou plusieurs contact du groupe séléctionné">retirer un contact </button>
+        </td>
+        <td>
           <button class="btn btn-danger" (click)="confirmDialog(groupe)">Supprimer</button>
         </td>
       </tr>
