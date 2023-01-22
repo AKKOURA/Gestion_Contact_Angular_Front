@@ -1,0 +1,19 @@
+
+<h1 mat-dialog-title>
+  Liste des groupes à retirer
+</h1>
+<div mat-dialog-content>
+  <tbody>
+    <tr *ngFor="let group of groupOfContactList">
+        <td><h2 style="margin-top: 30%;">{{ group.label }}</h2></td>
+        
+        <td style="padding-left: 100px;">
+          <button class="btn btn-primary" (click) = "deleteGroupFromContact(group.idContactGroup,contact.idContact)" mat-raised-button color="primary"  style="width : 80px; float: right;"> Retirer</button>
+        </td>
+       
+      </tr>    
+  <tbody>
+</div>
+<div mat-dialog-actions style="float: right;">
+  <button class="btn btn-secondary" mat-button (click)="close()">Fermer</button>
+</div>

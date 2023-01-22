@@ -38,11 +38,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 me-n3">
-                <a href="" class="nav-item nav-link active">Accueil</a>
-                <a href="/contacts" class="nav-item nav-link">Liste contact</a>
+                <a href="" class="nav-item nav-link">Accueil</a>
+                <a href="/contacts" class="nav-item nav-link">Contacts</a>
                 <a class="nav-item nav-link" (click) = "addContact()">Ajout contact</a>
-                <a (click)="addGroupe()" class="nav-item nav-link">Ajout groupe</a>
-                <a href="" class="nav-item nav-link">Ajout phone</a>
+                <a href="/groupes" class="nav-item nav-link active">Groupes</a>
                 <!--<a><img src="./assets/user.png" alt=""></a>-->
             </div>
         </div>
@@ -68,7 +67,7 @@
           <button class="btn btn-success" (click)="updateGroupe(groupe)"> Modifier</button>
         </td>
         <td>
-          <button class="btn btn-danger" (click)="deleteGroupe(groupe)">Supprimer</button>
+          <button class="btn btn-danger" (click)="confirmDialog(groupe)">Supprimer</button>
         </td>
       </tr>
     </tbody>

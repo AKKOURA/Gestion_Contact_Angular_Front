@@ -38,10 +38,10 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 me-n3">
                 <a href="" class="nav-item nav-link active">Accueil</a>
-                <a href="/contacts" class="nav-item nav-link">Liste contact</a>
+                <a href="/contacts" class="nav-item nav-link">Contacts</a>
                 <a class="nav-item nav-link" (click) = "addContact()">Ajout contact</a>
-                <a (click)="addGroupe()" class="nav-item nav-link">Ajout groupe</a>
-                <a href="/groupes" class="nav-item nav-link">Consulter les groupes</a>
+                <a href="/groupes" class="nav-item nav-link">Groupes</a>
+                <a (click)="addGroupe()" class="nav-item nav-link">Ajout groupe</a>  
                 <!--<a><img src="./assets/user.png" alt=""></a>-->
             </div>
         </div>
@@ -73,15 +73,15 @@
             <hr class="w-25 mx-auto bg-primary">
         </div>
         <div class="row g-5">
-                <div class="col">
+            <div class="col">
                 <div class="service-item bg-secondary text-center px-5">
                     <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
                         <i class="fa fa-user-tie fa-2x"></i>
                     </div>
-                    <a  href="/contacts"><h3 class="mb-3">Voir tous les contacts</h3></a>
-                    <p class="mb-0">Profitez de ce service innovant ! Retrouvez ici la liste de tous les contacts</p>
+                    <a  href="/contacts"><h3 class="mb-3">Consulter les contacts</h3></a>
+                    <p class="mb-0">Profitez de ce service innovant ! Retrouvez ici la liste de tous les contacts, et effectuer les opérations souhaitées.</p>
             
-                  </div>
+                </div>
             </div>
             <div class="col">
                 <div class="service-item bg-secondary text-center px-5">
@@ -95,10 +95,11 @@
             <div class="col">
                 <div class="service-item bg-secondary text-center px-5">
                     <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
-                        <i class="fa fa-chart-line fa-2x"></i>
+                        <i class="fa fa-user-tie fa-2x"></i>
                     </div>
-                    <a class="pe-auto" (click) = "addContact()"><h3 class="mb-3">Ajout telephone</h3></a>
-                    <p class="mb-0">Dans ce service vous pouvez ajouter un ou plusieurs numero de telephone a un contact existant</p>
+                    <a  href="/groupes"><h3 class="mb-3">Consulter les groupes</h3></a>
+                    <p class="mb-0">Profitez de ce service innovant ! Retrouvez ici la liste de tous les groupes, et effectuer les opérations souhaitées.</p>
+            
                 </div>
             </div>
             <div class="col">
@@ -106,8 +107,8 @@
                     <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
                         <i class="fa fa-chart-area fa-2x"></i>
                     </div>
-                    <a class="pe-auto" (click)=" addGroupe()"><h3 class="mb-3">Ajout groupe</h3></a>
-                    <p class="mb-0">Dans ce service vous pouvez ajouter un contact groupe existant</p>
+                    <a (click)="addGroupe()"><h3 class="mb-3">Ajout groupe</h3></a>
+                    <p class="mb-0">Dans ce service vous pouvez ajouter un groupe inexistant dans le référentiel</p>
                 </div>
             </div>
         </div>

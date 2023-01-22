@@ -11,6 +11,10 @@ import { AddContactToGroupModalComponent } from './add-contact-to-group-modal/ad
 import { UpdateContactModalComponent } from './update-contact-modal/update-contact-modal.component';
 import { ToastrService } from 'ngx-toastr';
 import { CreateContact_modalComponent } from './create-contact-modal/create-contact_modal/create-contact_modal.component';
+import { DeteteContactFromGroupComponent } from './detete-contact-from-group/detete-contact-from-group.component';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
+import { ContactGroupEntity } from 'src/app/entities/ContactGroupEntity';
+import { CreateGroupeModalComponent } from 'src/app/groupe/create-groupe-modal/create-groupe-modal.component';
 
 
 
@@ -22,6 +26,14 @@ import { CreateContact_modalComponent } from './create-contact-modal/create-cont
 export class ContactComponent implements OnInit {
    address: any;
   contactList: ContactEntity[] = [];
+  result: string = '';
+  public newGroupe :ContactGroupEntity={
+    idContactGroup:0,
+    contacts:[],
+    label:""
+  
+  }
+
   public newContact :ContactEntity={
     idContact :0,
     firstName : "",
@@ -54,28 +66,6 @@ export class ContactComponent implements OnInit {
       }
     );
   }
-  updatePhones(selectedPhones :any[], idContact :number){
-    this.contactService.addPhonesToContact(selectedPhones,idContact)
-    . subscribe ((result : boolean )=>{
-     console.log(result)
-    },
-    (error:HttpErrorResponse)=>{
-      alert(error.message);
-      }
-    );
-
-  }
-  updateGroupes(selectedGroupes :any[], idContact :number){
-    this.contactService.addGroupesToContact(selectedGroupes,idContact)
-    . subscribe ((result : boolean )=>{
-     console.log(result)
-    },
-    (error:HttpErrorResponse)=>{
-      alert(error.message);
-      }
-    );
-    
-  }
   public updateContact(contact :ContactEntity){
 
     const dialogRef = this.dialog.open(UpdateContactModalComponent, {
@@ -89,12 +79,10 @@ export class ContactComponent implements OnInit {
           contact.email = result?.contactForm?.email;
           contact.address.address = result?.contactForm?.address;
           contact.phones = result.selectedPhones;
-          //contact.contactGroups = result.selectedGroupes;
             this.contactService.updateContat(contact).subscribe({
               next :()=>{
-                this.updateGroupes(result.selectedGroupes,contact.idContact)
                 this.router.navigate(['/contacts']);
-                  this.toastService.success('Le contact est bien été modifié ',"Succès")
+                  this.toastService.success('Le contact a bien été modifié ',"Succès")
               },
               error :()=>  this.toastService.error('Erreur lors de la modification',"Erreur")
             });
@@ -123,7 +111,7 @@ export class ContactComponent implements OnInit {
             this.contactService.createContact(this.newContact).subscribe({
               next :()=>{
                    window.location.reload();
-                  this.toastService.success('Le contact est bien ajouté dans le répertoire',"Succès")
+                  this.toastService.success('Le contact a bien ajouté dans le répertoire',"Succès")
               },
               error :()=>  this.toastService.error('Erreur lors de lajout',"Erreur")
             });
@@ -134,10 +122,34 @@ export class ContactComponent implements OnInit {
   }
 
   public addContactToGroup(contact :ContactEntity){
+
     const dialogRef = this.dialog.open(AddContactToGroupModalComponent, {
       data:contact,
     }); 
   }
+
+  public deleteContactFromGroup(contact :ContactEntity){
+
+    const dialogRef = this.dialog.open(DeteteContactFromGroupComponent, {
+      data:contact,
+    }); 
+  }
+  confirmDialog(contact :ContactEntity): void {
+    const message = `Etes-vous sûr de vouloir supprimer le contact ${contact.lastName} ?`;
+
+    const dialogData = new ConfirmDialogModel("Confirmation", message);
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      this.result = dialogResult;
+      this.deleteContact(contact);
+    });
+  }
+
 
   public deleteContact(contact :ContactEntity){
     this.contactService.deleteContact(contact.idContact)
@@ -151,6 +163,31 @@ export class ContactComponent implements OnInit {
       }
     );
   }
+  addGroupe(){
+    const dialogRef = this.dialog.open(CreateGroupeModalComponent, {
+      data: {},
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+        if(result!=null){
+          this.newGroupe.label= result?.groupeForm?.label;
+            this.contactService.createGroupe(this.newGroupe).subscribe({
+              next :()=>{
+                //this.router.navigate(['/groupes']);
+                   window.location.reload();
+                  this.toastService.success('Le groupe est bien ajouté dans le répertoire',"Succès")
+              },
+              error :()=>  this.toastService.error('Erreur lors de lajout',"Erreur")
+            });
+         
+        }
+
+    });
+}
+
+  
 
 
 }

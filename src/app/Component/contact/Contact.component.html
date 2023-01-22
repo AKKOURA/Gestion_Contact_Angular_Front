@@ -38,12 +38,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 me-n3">
-                <a href="" class="nav-item nav-link active">Accueil</a>
-                <a href="/contacts" class="nav-item nav-link">Liste contact</a>
+                <a href="" class="nav-item nav-link ">Accueil</a>
+                <a href="/contacts" class="nav-item nav-link active">Contacts</a>
                 <a class="nav-item nav-link" (click) = "addContact()">Ajout contact</a>
-                <a href="" class="nav-item nav-link">Ajout groupe</a>
-                <a href="" class="nav-item nav-link">Ajout phone</a>
-                <!--<a><img src="./assets/user.png" alt=""></a>-->
+                <a href="/groupes" class="nav-item nav-link">Groupes</a>
+                <a  (click)="addGroupe()" class="nav-item nav-link">Ajout groupe</a>
             </div>
         </div>
     </nav>
@@ -55,9 +54,9 @@
       <tr>
         <th>Numéro</th>
         <th>Nom</th>
-        <th>Prenom</th>
+        <th>Prénom</th>
         <th>Email</th>
-        <th>Address</th>
+        <th>Adresse</th>
       </tr>
     </thead>
     <tbody>
@@ -72,10 +71,13 @@
           <button class="btn btn-success" (click)="updateContact(contact)"> Modifier</button>
         </td>
         <td>
-          <button class="btn btn-warning" (click)="addContactToGroup(contact)"> Ajouter à un groupe</button>
+          <button class="btn btn-warning" (click)="addContactToGroup(contact)"  data-toggle="tooltip" data-placement="bottom" title="permet d'ajouter le contact séléctionné à un ou plusieurs groupes"> ajouter à un groupe</button>
         </td>
         <td>
-          <button class="btn btn-danger" (click)="deleteContact(contact)"> Supprimer</button>
+          <button class="btn btn-warning" (click)="deleteContactFromGroup(contact)"  data-toggle="tooltip" data-placement="bottom" title="Permet de retirer le contact séléctionné d'un ou plusieurs groupes">retirer un groupe </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="confirmDialog(contact)" data-toggle="tooltip" data-placement="bottom" title="Permet de supprimer le contact avec toutes ces reférences"> spprimer</button>
         </td>
       </tr>
     </tbody>

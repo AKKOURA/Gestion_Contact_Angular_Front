@@ -13,6 +13,7 @@ import { ContactService } from '../services/Contact.service';
 import { ContactGroupEntity } from '../entities/ContactGroupEntity';
 import { CreateGroupeModalComponent } from './create-groupe-modal/create-groupe-modal.component';
 import { UpdateGroupeModalComponent } from './update-groupe-modal/update-groupe-modal.component';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../Component/confirm-dialog/confirm-dialog.component';
 @Component({
   selector: 'app-groupe',
   templateUrl: './groupe.component.html',
@@ -136,6 +137,20 @@ public newGroupe :ContactGroupEntity={
 
     });
 
+  }
+  confirmDialog(groupe:ContactGroupEntity): void {
+    const message = `Etes-vous sûr de vouloir supprimer le groupe ${groupe.label} ?`;
+
+    const dialogData = new ConfirmDialogModel("Confirmation", message);
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      this.deleteGroupe(groupe);
+    });
   }
   
   public deleteGroupe(groupe:ContactGroupEntity){

@@ -73,8 +73,6 @@ export class AccueilComponent implements OnInit {
 
     });
   }
-  rechercher(){}
-  disconnect(){}
 
   addGroupe(){
     const dialogRef = this.dialog.open(CreateGroupeModalComponent, {

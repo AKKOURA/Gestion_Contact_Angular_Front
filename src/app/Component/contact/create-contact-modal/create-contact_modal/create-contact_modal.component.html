@@ -28,16 +28,7 @@
     placeholder="Ajouter un ou plusieurs téléphones au contact"
     [(ngModel)]="selectedPhoneIds" style="width : 500px;">
   </ng-select>
-  <br> 
-  <ng-select 
-    [items]="groupes"
-    bindLabel="label"
-    bindValue="idContactGroup"
-    [addTag]="addGroupe"
-    [multiple]="true"
-    placeholder="Inserer un ou plusieurs groupes"
-    [(ngModel)]="selectedGroupeIds" style="width : 500px;">
-  </ng-select>
+  
   </mat-dialog-content>
   <br><br>
   <div mat-dialog-actions>
