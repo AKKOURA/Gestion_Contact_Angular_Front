@@ -50,6 +50,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { GroupeComponent } from './groupe/groupe.component';
 import { CreateGroupeModalComponent } from './groupe/create-groupe-modal/create-groupe-modal.component';
 import { UpdateGroupeModalComponent } from './groupe/update-groupe-modal/update-groupe-modal.component';
+import { AddContactToGroupModalComponent } from './Component/contact/add-contact-to-group-modal/add-contact-to-group-modal.component';
 
 const routes: Routes = [
   { path: '', component: AccueilComponent },
@@ -69,6 +70,7 @@ const routes: Routes = [
     GroupeComponent,
     CreateGroupeModalComponent,
     UpdateGroupeModalComponent,
+    AddContactToGroupModalComponent,
   ],
   imports: [
     BrowserModule,
