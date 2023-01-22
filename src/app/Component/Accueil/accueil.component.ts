@@ -8,7 +8,7 @@ import { AddressEntity } from 'src/app/entities/AddressEntity';
 import { ToastrService } from 'ngx-toastr';
 import { PhoneNumberEntity } from 'src/app/entities/PhoneNumberEntity';
 import { ContactGroupEntity } from 'src/app/entities/ContactGroupEntity';
-import { HttpErrorResponse } from '@angular/common/http';
+import { CreateGroupeModalComponent } from 'src/app/groupe/create-groupe-modal/create-groupe-modal.component';
 
 @Component({
   selector: 'app-accueil',
@@ -36,6 +36,13 @@ export class AccueilComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
+  }
+
+  public newGroupe :ContactGroupEntity={
+    idContactGroup:0,
+    contacts:[],
+    label:""
+  
   }
   
   addContact() {
@@ -68,5 +75,29 @@ export class AccueilComponent implements OnInit {
   }
   rechercher(){}
   disconnect(){}
+
+  addGroupe(){
+    const dialogRef = this.dialog.open(CreateGroupeModalComponent, {
+      data: {},
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+        if(result!=null){
+          this.newGroupe.label= result?.groupeForm?.label;
+            this.contactService.createGroupe(this.newGroupe).subscribe({
+              next :()=>{
+                this.router.navigate(['/groupes']);
+                   window.location.reload();
+                  this.toastService.success('Le groupe est bien ajouté dans le répertoire',"Succès")
+              },
+              error :()=>  this.toastService.error('Erreur lors de lajout',"Erreur")
+            });
+         
+        }
+
+    });
+}
 
 }

@@ -1,0 +1,17 @@
+
+    <mat-dialog-content style="width : 600px; background-color:aliceblue" >
+
+        <h2 mat-dialog-title style="text-align : center;">Ajouter un nouveau groupe</h2>
+        <mat-form-field [formGroup]="groupeForm" style="width : 500px;">
+            <input matInput placeholder="Libellé du groupe" formControlName="label">
+        </mat-form-field>
+        <br>
+    </mat-dialog-content>
+    <br><br>
+    <div mat-dialog-actions>
+      <button type="submit" mat-raised-button color="primary"  style="width : 170px;" (click)="save()">Valider</button>
+      <button type="button" mat-raised-button  style="width : 170px;" (click)="close()">Annuler</button>
+    </div> 
+  
+    
+  

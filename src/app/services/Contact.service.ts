@@ -28,11 +28,24 @@ getAllContacts() : Observable<ContactEntity[]>{
 deleteContact(id:number):Observable<number>{
   return this.http.get<number>(`http://localhost:8080/CarnetContactProjet/delete/${id}`);
 }
+
+deletegroupe(id:number):Observable<number>{
+  return this.http.get<number>(`http://localhost:8080/CarnetContactProjet/deletegroupe/${id}`);
+}
+
 createContact(newContact:ContactEntity):Observable<boolean>{
   return this.http.post<boolean>("http://localhost:8080/CarnetContactProjet/create",newContact);
 }
+createGroupe(newGroupe:ContactGroupEntity):Observable<boolean>{
+  return this.http.post<boolean>("http://localhost:8080/CarnetContactProjet/creategroupe",newGroupe);
+}
+
 updateContat(contactToUpdate:ContactEntity):Observable<boolean>{
   return this.http.post<boolean>("http://localhost:8080/CarnetContactProjet/update",contactToUpdate);
+}
+
+updateGroupe(groupeUpdate:ContactGroupEntity):Observable<boolean>{
+  return this.http.post<boolean>("http://localhost:8080/CarnetContactProjet/updategroupe",groupeUpdate);
 }
 addPhonesToContact(phones : any[],idContact :number):Observable<boolean>{
   return this.http.post<boolean>(`http://localhost:8080/CarnetContactProjet/add-phones-to-contact/${idContact}`,phones);

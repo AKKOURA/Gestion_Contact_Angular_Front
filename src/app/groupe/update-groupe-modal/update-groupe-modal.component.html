@@ -1,0 +1,16 @@
+<mat-dialog-content style="width : 600px; background-color:aliceblue">
+        <h2 mat-dialog-title style="text-align : center;"> Modifier le nom du groupe </h2>
+        <mat-form-field  [formGroup]="groupeForm" style="width : 500px;">
+            <input matInput placeholder="label" formControlName="label" [(ngModel)]="groupe.label">
+        </mat-form-field>
+        <br>
+
+    </mat-dialog-content>
+    
+    <div mat-dialog-actions>
+      <button type="submit" mat-raised-button color="primary" style="width : 170px;" (click)="save()">Valider</button>
+      <button mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised"  style="width : 170px;" (click)="close()">Annuler</button>
+    </div>
+  
+    
+  
