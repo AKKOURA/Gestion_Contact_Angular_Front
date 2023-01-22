@@ -3,10 +3,8 @@ export class ContactGroupEntity{
     idContactGroup! : number;
     contacts! : ContactEntity[];
     label ! : string;
-    constructor(
-
-
-    ){
+    constructor(label:string){
+        this.label=label
 
     }
 }
