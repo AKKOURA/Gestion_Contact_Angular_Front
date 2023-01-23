@@ -104,6 +104,7 @@ public newGroupe :ContactGroupEntity={
         console.log(result)
           if(result!=null){
             this.newGroupe.label= result?.groupeForm?.label;
+            if(!this.groupeList.map(g=>g.label).includes( this.newGroupe.label)){
               this.contactService.createGroupe(this.newGroupe).subscribe({
                 next :()=>{
                   this.router.navigate(['/groupes']);
@@ -112,7 +113,11 @@ public newGroupe :ContactGroupEntity={
                 },
                 error :()=>  this.toastService.error('Erreur lors de lajout',"Erreur")
               });
+            }else{
+              this.toastService.error('Le groupe existe déjà',"Erreur")
+            }
            
+                  
           }
   
       });
